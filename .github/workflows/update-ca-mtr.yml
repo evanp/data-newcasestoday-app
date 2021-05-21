@@ -1,0 +1,24 @@
+name: Update Montreal COVID-19 Data
+env:
+  MONTREAL_DATA_URL: https://santemontreal.qc.ca/fileadmin/fichiers/Campagnes/coronavirus/situation-montreal/courbe.csv
+  OUTPUT_LOCATION: city/CA/CA_MTR.csv
+on:
+  schedule:
+    # * is a special character in YAML so you have to quote this string
+    - cron:  '38 0,6,12,18 * * *'
+jobs:
+  Get latest Montreal data:
+    name: "Get latest Montreal data"
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - uses: actions/setup-node@v1
+      - name: "Download Montreal CSV file"
+        run: "curl -o ${OUTPUT_LOCATION} ${MONTREAL_DATA_URL}"
+      - name: "Commit Montreal data file"
+        uses: test-room-7/action-update-file@v1
+        with:
+            file-path: ${OUTPUT_LOCATION}
+            commit-msg: "Automated update of Montreal data file"
+            github-token: ${{ secrets.MY_GITHUB_TOKEN }}
+    
