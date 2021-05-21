@@ -19,7 +19,7 @@ jobs:
       - name: "Commit Montreal data file"
         uses: test-room-7/action-update-file@v1
         with:
-            file-path: ${{ OUTPUT_LOCATION }}
+            file-path: ${{ env.OUTPUT_LOCATION }}
             commit-msg: "Automated update of Montreal data file"
             github-token: ${{ secrets.MY_GITHUB_TOKEN }}
     
