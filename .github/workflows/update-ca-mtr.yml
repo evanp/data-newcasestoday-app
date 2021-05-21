@@ -2,6 +2,7 @@ name: Update Montreal COVID-19 Data
 env:
   MONTREAL_DATA_URL: https://santemontreal.qc.ca/fileadmin/fichiers/Campagnes/coronavirus/situation-montreal/courbe.csv
   OUTPUT_LOCATION: city/CA/CA_MTR.csv
+  TEMP_LOCATION: tmp/CA_MTR.csv
   CHROME_UA: "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/90.0.4430.212 Safari/537.36"
 on:
   workflow_dispatch:
@@ -16,7 +17,9 @@ jobs:
       - uses: actions/checkout@v1
       - uses: actions/setup-node@v1
       - name: "Download Montreal CSV file"
-        run: "curl -v -A \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/90.0.4430.212 Safari/537.36\" -o ${OUTPUT_LOCATION} ${MONTREAL_DATA_URL}"
+        run: |
+          curl -f -v -A "${CHROME_UA}" -o ${TEMP_LOCATION} ${MONTREAL_DATA_URL}
+          mv ${TEMP_LOCATION} ${OUTPUT_LOCATION}
       - name: "Commit Montreal data file"
         uses: test-room-7/action-update-file@v1
         with:
