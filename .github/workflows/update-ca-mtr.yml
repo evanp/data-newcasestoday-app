@@ -8,7 +8,7 @@ on:
     # * is a special character in YAML so you have to quote this string
     - cron:  '38 0,6,12,18 * * *'
 jobs:
-  Get latest Montreal data:
+  latest-montreal-data:
     name: "Get latest Montreal data"
     runs-on: ubuntu-latest
     steps:
