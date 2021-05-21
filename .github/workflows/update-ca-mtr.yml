@@ -3,6 +3,7 @@ env:
   MONTREAL_DATA_URL: https://santemontreal.qc.ca/fileadmin/fichiers/Campagnes/coronavirus/situation-montreal/courbe.csv
   OUTPUT_LOCATION: city/CA/CA_MTR.csv
 on:
+  workflow_dispatch:
   schedule:
     # * is a special character in YAML so you have to quote this string
     - cron:  '38 0,6,12,18 * * *'
