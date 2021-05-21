@@ -16,7 +16,7 @@ jobs:
       - uses: actions/checkout@v1
       - uses: actions/setup-node@v1
       - name: "Download Montreal CSV file"
-        run: "curl -A \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/90.0.4430.212 Safari/537.36\" -o ${OUTPUT_LOCATION} ${MONTREAL_DATA_URL}"
+        run: "curl -v -A \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/90.0.4430.212 Safari/537.36\" -o ${OUTPUT_LOCATION} ${MONTREAL_DATA_URL}"
       - name: "Commit Montreal data file"
         uses: test-room-7/action-update-file@v1
         with:
