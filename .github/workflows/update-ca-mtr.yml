@@ -21,7 +21,7 @@ jobs:
           curl -f -v -A "${CHROME_UA}" -o ${TEMP_LOCATION} ${MONTREAL_DATA_URL}
           mv ${TEMP_LOCATION} ${OUTPUT_LOCATION}
       - name: "Commit Montreal data file"
-        uses: test-room-7/action-update-file@v1
+        uses: test-room-7/action-update-file@v2
         with:
             file-path: ${{ env.OUTPUT_LOCATION }}
             commit-msg: "Automated update of Montreal data file"
