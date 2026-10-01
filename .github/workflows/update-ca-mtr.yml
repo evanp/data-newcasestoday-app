@@ -15,7 +15,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
-      - uses: actions/setup-node@v1
+      - uses: actions/setup-node@v7
       - name: "Download Montreal CSV file"
         run: |
           curl -f -v -A "${CHROME_UA}" -o ${TEMP_LOCATION} ${MONTREAL_DATA_URL}
